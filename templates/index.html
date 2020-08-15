@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron" style="background-color:black;">
+        <h1 style="color: azure;" class="display-4 text-center">{{title_content}}</h1>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-light btn-lg mx-auto" href="{% url 'data:index' %}">Book</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

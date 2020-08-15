@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">{{title_content}}</h1>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Author</th>
+                <th scope="col">Title</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in book_all %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{book.author}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.genre}}</td>
+                <td>
+                    <a class="btn btn-success" href="{% url 'data:update' book.id %}">Update</a>
+                    <a class="btn btn-danger" href="{% url 'data:delete' book.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th scope="row">+</th>
+                <form method="POST">
+                    {% csrf_token %}
+                    <td>{{book_form.author}}</td>
+                    <td>{{book_form.title}}</td>
+                    <td>{{book_form.genre}}</td>
+                    <td><button class="btn btn-light" type="submit">Add</button></td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-dark" href="{% url 'index' %}">Back</a>
+</div>
+{% endblock content %}
